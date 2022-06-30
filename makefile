@@ -30,22 +30,21 @@
 
 # Target file name (without extension). 
 # This is the base name of the compiled .hex file.
-TARGET = simpleserial-target
+TARGET = modified
+CFLAGS = -ggdb
 
 # List C source files here.
 # Header files (.h) are automatically pulled in.
-SRC += main.c
+SRC += main.c aes.c
+OPT = s
 
-SS_VER=SS_VER_2_0
-PLATFORM=CWLITEARM
+SS_VER=SS_VER_2_1
+PLATFORM=CW308_STM32F4
+# CRYPTO_TARGET = TINYAES128C
 
 # -----------------------------------------------------------------------------
-debugging:
-	gcc -o debug-target debug-source.c main.c
-
 #Add simpleserial project to build
 include simpleserial/Makefile.simpleserial
 
 FIRMWAREPATH = .
 include $(FIRMWAREPATH)/Makefile.inc
-
